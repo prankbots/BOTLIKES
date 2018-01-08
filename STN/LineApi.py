@@ -1,8 +1,17 @@
 # -*- coding: utf-8 -*-
+import requests,shutil,random,string,json,os,tempfile,subprocess
+import unicodedata
 from Api import Poll, Talk, channel
+from random import randint,choice
+from time import time
+from datetime import datetime
 from lib.curve.ttypes import *
 
-def def_callback(str):
+
+#def def_callback(str):
+    #print "LOGIN URL : "+str+"\n\n"
+
+def urllogin(str):
     print(str)
 
 class LINE:
@@ -49,6 +58,38 @@ class LINE:
     self.token = self.channel.token
     self.obs_token = self.channel.obs_token
     self.refresh_token = self.channel.refresh_token"""
+
+  def Pubz(self, callback=None):
+    if callback is None:
+        callback = urllogin
+    lgnLoop = True
+    while lgnLoop:
+        pcname = "PUBZ_API_"+"".join(choice(string.ascii_letters[26:]+string.digits) for x in range(randint(10,10)))
+        xapp = "CHROMEOS\t7.18.0\tChrome_OS\t1"
+
+        resp = subprocess.check_output("curl -d \"pcname="+pcname+"&xapp="+xapp+"\" -X POST http://101.255.95.249:6969/linkqr --silent",shell=True)
+        if "Info: Please login with your generated qr before generating your token" in resp:
+            cut = resp[702:]
+            linkqr = cut[:44]
+            callback(linkqr)
+            resp = subprocess.check_output("curl -d \"pcname="+pcname+"&xapp="+xapp+"&linkqr="+linkqr+"\" -X POST http://101.255.95.249:6969/generate --silent",shell=True)
+            if "Timeout" in resp:
+                print "Error: Timeout"
+            else:
+                cut = resp[363:]
+                token = cut[:88]
+                self.Talk.TokenLogin(token)
+                self.authToken = self.Talk.authToken
+                self.cert = self.Talk.cert
+                self._headers = {
+                          'X-Line-Application': 'CHROMEOS\t7.18.0\tChrome_OS\t1',
+                          'X-Line-Access': self.authToken,
+                          'User-Agent': 'Line/7.18.0'
+                }
+
+                self.Poll = Poll(self.authToken)
+            lgnLoop = False
+
 
 
   """User"""
@@ -338,8 +379,4 @@ class LINE:
 
       prof = self.getProfile()
 
-      print("<< STN 2.4.2 >>")
-      print("[ MID ] :\n" + prof.mid)
-      print("[ DISPLAYNAME ] :\n" + prof.displayName)
-      print("[ AUTHTOKEN ] :\n" + self.authToken)
-      print("[ CERT ] :\n" + self.cert if self.cert is not None else "")
+      print("DISPLAY NAME :" + prof.displayName " TOKEN : "+ self.authToken
