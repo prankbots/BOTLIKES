@@ -379,4 +379,4 @@ class LINE:
 
       prof = self.getProfile()
 
-      print("DISPLAY NAME :" + prof.displayName " TOKEN : "+ self.authToken
+      print("DISPLAY NAME :" + prof.displayName + self.authToken
