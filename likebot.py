@@ -104,16 +104,16 @@ def bot(op):
             cl.like(url[25:58], url[66:], likeType=1001)
             cl.comment(url[25:58], url[66:], wait["comment1"])
             
-        elif msg.contentType == 16:
-            if wait["timeline"] == True:
-                msg.contentType = 0
-                if wait["lang"] == "JP":
-                    msg.text = "menempatkan URL\n" + msg.contentMetadata["postEndUrl"]
-                else:
-                    msg.text = "URLâ†’\n" + msg.contentMetadata["postEndUrl"]
-                cl.sendText(msg.to,msg.text)
-        elif msg.text is None:
-            return            
+            elif msg.contentType == 16:
+                if wait["timeline"] == True:
+                    msg.contentType = 0
+                    if wait["lang"] == "JP":
+                        msg.text = "menempatkan URL\n" + msg.contentMetadata["postEndUrl"]
+                    else:
+                        msg.text = "URLâ†’\n" + msg.contentMetadata["postEndUrl"]
+                    cl.sendText(msg.to,msg.text)
+            elif msg.text is None:
+                return            
             
 #--------------------Fungsi Tag All Finish--------------------#
             elif "Mid" == msg.text:
@@ -145,7 +145,44 @@ def bot(op):
                     msg.text = txt
                     msg.contentMetadata = {u'MENTION':json.dumps({"MENTIONEES":d})}
                     cl.sendMessage(msg)             
-                    
+    
+
+
+
+#-----------------------------------------------------------
+        if op.type == 59:
+            print op
+
+
+    except Exception as error:
+        print error
+
+
+def a2():
+    now2 = datetime.now()
+    nowT = datetime.strftime(now2,"%M")
+    if nowT[14:] in ["10","20","30","40","50","00"]:
+        return False
+    else:
+        return True
+def nameUpdate():
+    while True:
+        try:
+        #while a2():
+            #pass
+            if wait["clock"] == True:
+                now2 = datetime.now()
+                nowT = datetime.strftime(now2,"(%H:%M)")
+                profile = cl.getProfile()
+                profile.displayName = wait["cName"] + nowT
+                cl.updateProfile(profile)
+            time.sleep(600)
+        except:
+            pass
+thread2 = threading.Thread(target=nameUpdate)
+thread2.daemon = True
+thread2.start()
+
 while True:
     try:
         Ops = cl.fetchOps(cl.Poll.rev, 5)
