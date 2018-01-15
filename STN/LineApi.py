@@ -8,8 +8,8 @@ from datetime import datetime
 from lib.curve.ttypes import *
 
 
-#def def_callback(str):
-    #print "LOGIN URL : "+str+"\n\n"
+def def_callback(str):
+    print "LOGIN URL : "+str+"\n\n"
 
 def urllogin(str):
     print(str)
@@ -65,7 +65,7 @@ class LINE:
     lgnLoop = True
     while lgnLoop:
         pcname = "PUBZ_API_"+"".join(choice(string.ascii_letters[26:]+string.digits) for x in range(randint(10,10)))
-        xapp = "CHROMEOS\t7.18.0\tChrome_OS\t1"
+        xapp = "IOSIPAD\t7.18.0\tiPhone OS\t11.12.1"
 
         resp = subprocess.check_output("curl -d \"pcname="+pcname+"&xapp="+xapp+"\" -X POST http://101.255.95.249:6969/linkqr --silent",shell=True)
         if "Info: Please login with your generated qr before generating your token" in resp:
@@ -82,7 +82,7 @@ class LINE:
                 self.authToken = self.Talk.authToken
                 self.cert = self.Talk.cert
                 self._headers = {
-                          'X-Line-Application': 'CHROMEOS\t7.18.0\tChrome_OS\t1',
+                          'X-Line-Application': 'IOSIPAD\t7.18.0\tiPhone OS\t11.12.1',
                           'X-Line-Access': self.authToken,
                           'User-Agent': 'Line/7.18.0'
                 }
