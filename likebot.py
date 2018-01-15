@@ -12,8 +12,7 @@ cl = STN.LINE()
 cl.login(token='authoken punya kalian')
 cl.loginResult()
 
-cl 
-print u"login success"
+print u"PRANK BOTLIKE SUCCESS LOGIN"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -29,7 +28,7 @@ wait = {
     'leaveRoom':True,
     'timeline':True,
     'autoAdd':False,
-    'message':"❂••••••••AUTO ADD••••••••❂ https://line.me/R/ti/p/%40iya4481p『⊰์◉⊱ᎢᎬᎪᎷ ᏴᏞᎪᏟᏦ ❂Ғ ᏀᎪᎷᎬᎡ⊰์◉⊱』",
+    'message':"❂••••••••AUTO ADD••••••••❂\nhttps://line.me/R/ti/p/%40iya4481p\n『⊰์◉⊱ᎢᎬᎪᎷ ᏴᏞᎪᏟᏦ ❂Ғ ᏀᎪᎷᎬᎡ⊰์◉⊱』",
     "lang":"JP",
     "comment1":"❂••••••••••••••••••••••••••❂\n https://line.me/R/ti/p/%40iya4481p\n『⊰์◉⊱ᎢᎬᎪᎷ ᏴᏞᎪᏟᏦ ❂Ғ ᏀᎪᎷᎬᎡ⊰์◉⊱』",
     "commentOn":False,
@@ -130,6 +129,7 @@ def bot(op):
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': mid}
                 cl.sendMessage(msg)
+		
             elif "Tagall" in msg.text:
                 group = cl.getGroup(msg.to)
                 k = len(group.members)//100
