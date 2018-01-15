@@ -1,3 +1,0 @@
-STN ( PUBZ )
-LAST UPDATE 2.4.2
-NOW : 2.4.2
