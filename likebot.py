@@ -85,6 +85,20 @@ def bot(op):
                     pass
                 else:
                     cl.sendText(op.param1,str(wait["message"]))
+     	if op.type == 26:
+            msg = op.message
+            if msg.toType == 0:
+                msg.to = msg.from_
+                if msg.from_ == admin:
+                    if "join:" in msg.text:
+                        list_ = msg.text.split(":")
+                        try:
+                            cl.acceptGroupInvitationByTicket(list_[1],list_[2])
+                            X = cl.getGroup(list_[1])
+                            X.preventJoinByTicket = True
+                            cl.updateGroup(X)
+                        except:
+                            cl.sendText(msg.to,"error")
         if msg.contentType == 16:
             url = msg.contentMetadata["postEndUrl"]
             cl.like(url[25:58], url[66:], likeType=1001)
