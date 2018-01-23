@@ -20,7 +20,7 @@ KAC = [cl]
 mid = cl.getProfile().mid
 
 Bots = [mid]
-admsa="mid kalian"
+admid= "mid kalian"
 wait = {
     'contact':False,
     'autoJoin':True,
@@ -89,7 +89,7 @@ def bot(op):
             msg = op.message
             if msg.toType == 0:
                 msg.to = msg.from_
-                if msg.from_ == mid:
+                if msg.from_ == admin:
                     if "join:" in msg.text:
                         list_ = msg.text.split(":")
                         try:
@@ -104,20 +104,6 @@ def bot(op):
             cl.like(url[25:58], url[66:], likeType=1001)
             cl.comment(url[25:58], url[66:], wait["comment1"])
             
-         if op.type == 26:
-            msg = op.message
-            if msg.toType == 0:
-                msg.to = msg.from_
-                if msg.from_ == mid:
-                    if "join:" in msg.text:
-                        list_ = msg.text.split(":")
-                        try:
-                            cl.acceptGroupInvitationByTicket(list_[1],list_[2])
-                            X = cl.getGroup(list_[1])
-                            X.preventJoinByTicket = True
-                            cl.updateGroup(X)
-                        except:
-                            cl.sendText(msg.to,"error")
             elif msg.contentType == 16:
                 if wait["timeline"] == True:
                     msg.contentType = 0
@@ -130,7 +116,7 @@ def bot(op):
                 return
 #--------------------Fungsi Tag All Finish--------------------#
             elif "Mid" == msg.text:
-                cl.sendText(msg.to,mid)
+                cl.sendText(msg.to)
 #-------------------------------------------------------------------#
             elif msg.text in ["愛のプレゼント","Gift"]:
                 msg.contentType = 9
@@ -140,7 +126,7 @@ def bot(op):
                                     
             elif "Me" == msg.text:
                 msg.contentType = 13
-                msg.contentMetadata = {'mid': mid}
+                msg.contentMetadata = {'mid': msg.to}
                 cl.sendMessage(msg)
 		
             elif "Tagall" in msg.text:
@@ -159,8 +145,31 @@ def bot(op):
                     msg.contentMetadata = {u'MENTION':json.dumps({"MENTIONEES":d})}
                     cl.sendMessage(msg)             
     
+            elif "Cek" in msg.text:
+				cl.sendText(msg.to, "Let's see who lazy to type")
+				try:
+					del wait2['readPoint'][msg.to]
+					del wait2['readMember'][msg.to]
+				except:
+					pass
+				wait2['readPoint'][msg.to] = msg.id
+				wait2['readMember'][msg.to] = ""
+				wait2['setTime'][msg.to] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+				wait2['ROM'][msg.to] = {}
+				print wait2
+            elif "Cctv" in msg.text:
+				if msg.to in wait2['readPoint']:
+					if wait2["ROM"][msg.to].items() == []:
+						chiya = ""
+					else:
+						chiya = ""
+						for rom in wait2["ROM"][msg.to].items():
+							print rom
+							chiya += rom[1] + "\n"
 
-
+					cl.sendText(msg.to, "people who reading%s\n is this\n\n\nDate and time I started it:\n[%s]" % (wait2['readMember'][msg.to],setTime[msg.to]))
+				else:
+					cl.sendText(msg.to, "Ketik dulu cek\nBaru ketik cctv")
 
 #-----------------------------------------------------------
         if op.type == 59:
