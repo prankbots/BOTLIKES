@@ -108,7 +108,7 @@ def bot(op):
             msg = op.message
             if msg.toType == 0:
                 msg.to = msg.from_
-                if msg.from_ == "u54c7ad9784e86419f42e87f2aa39e1ec":
+                if msg.from_ == mid:
                     if "join:" in msg.text:
                         list_ = msg.text.split(":")
                         try:
@@ -118,7 +118,16 @@ def bot(op):
                             cl.updateGroup(X)
                         except:
                             cl.sendText(msg.to,"error")
-            
+            elif msg.contentType == 16:
+                if wait["timeline"] == True:
+                    msg.contentType = 0
+                    if wait["lang"] == "JP":
+                        msg.text = "menempatkan URL\n" + msg.contentMetadata["postEndUrl"]
+                    else:
+                        msg.text = "URLâ†’\n" + msg.contentMetadata["postEndUrl"]
+                    cl.sendText(msg.to,msg.text)
+            elif msg.text is None:
+                return
 #--------------------Fungsi Tag All Finish--------------------#
             elif "Mid" == msg.text:
                 cl.sendText(msg.to,mid)
@@ -129,7 +138,7 @@ def bot(op):
                                     'PRDTYPE': 'THEME',
                                     'MSGTPL': '5'}
                                     
-             elif "Me" == msg.text:
+            elif "Me" == msg.text:
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': mid}
                 cl.sendMessage(msg)
