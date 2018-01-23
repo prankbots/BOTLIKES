@@ -85,6 +85,10 @@ def bot(op):
                     pass
                 else:
                     cl.sendText(op.param1,str(wait["message"]))
+        if msg.contentType == 16:
+            url = msg.contentMetadata["postEndUrl"]
+            cl.like(url[25:58], url[66:], likeType=1001)
+            cl.comment(url[25:58], url[66:], wait["comment1"])
         if op.type == 26:
             msg = op.message
             if msg.toType == 0:
@@ -99,10 +103,6 @@ def bot(op):
                             cl.updateGroup(X)
                         except:
                             cl.sendText(msg.to,"error")                    
-        if msg.contentType == 16:
-            url = msg.contentMetadata["postEndUrl"]
-            cl.like(url[25:58], url[66:], likeType=1001)
-            cl.comment(url[25:58], url[66:], wait["comment1"])
             
             elif msg.contentType == 16:
                 if wait["timeline"] == True:
