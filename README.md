@@ -12,12 +12,12 @@ V2.1 last update::
 
 # LINE ME
 
-http://line.me/ti/p/~adiputra.95
+[ADD_LINE](http://line.me/ti/p/~adiputra.95)
 
 # TUTORIAL YOUTUBE
 [LIHAT_DISINI](https://youtu.be/H8cUWlBJG3c)
 
-[@SUCRABE](https://www.youtube.com/channel/UCycBrqSWEHdk-slnhUmGWiQ)
+[@SUBCRABE](https://www.youtube.com/channel/UCycBrqSWEHdk-slnhUmGWiQ)
 
 
 THANKS TO.
