@@ -15,9 +15,9 @@ V2.1 last update::
 http://line.me/ti/p/~adiputra.95
 
 # TUTORIAL YOUTUBE
-https://youtu.be/H8cUWlBJG3c
-### SUBSCRIBE
-https://www.youtube.com/channel/UCycBrqSWEHdk-slnhUmGWiQ
+[LIHAT_DISINI] (https://youtu.be/H8cUWlBJG3c)
+
+[@SUCRABE] (https://www.youtube.com/channel/UCycBrqSWEHdk-slnhUmGWiQ)
 
 
 THANKS TO.
